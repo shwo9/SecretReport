@@ -1,0 +1,294 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'lawyerAccount/css/lawyer_edit_page.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<div id="content">
+  <div class="container">
+    <div class="page_title">
+      <h1>변호사 정보수정</h1>
+      <div class="border"></div>
+    </div>
+
+    <form id="lawyerForm" method="POST" enctype="multipart/form-data" style="width: 100%">
+      {% csrf_token %}
+      <!-- 기본사항 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          기본사항 입력
+        </div>
+        <div class="form_vertical">
+          <table>
+            <colgroup>
+              <col style="width: 30%" />
+              <col style="width: 70%" />
+            </colgroup>
+            <tr>
+              <td>아이디</td>
+              <td><input type="text" name="username" value="{{ lawyer.user.username }}" required /></td>
+            </tr>
+            <tr>
+              <td>비밀번호</td>
+              <td>
+                <a href="{% url 'lawyerAccount:change_password' lawyer.id  %}" class="password_button">비밀번호 변경</a>
+              </td>
+            </tr>
+            <!-- <tr>
+              <td>비밀번호 확인</td>
+              <td><input type="password" name="password2" required /></td>
+            </tr> -->
+            <tr>
+              <td>성명(한글)</td>
+              <td><input type="text" name="name" value="{{lawyer.name}}" required /></td>
+            </tr>
+            <tr>
+              <td>성별</td>
+
+              <td class="gender_radio">
+                <label>
+                  <input type="radio" name="gender" value="man" {% if lawyer.gender == "man" %} checked
+                    {% endif %}required />
+                  남성
+                </label>
+                <label>
+                  <input type="radio" name="gender" {% if lawyer.gender == "woman" %} checked
+                    {% endif %}value="woman" />
+                  여성
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>휴대전화</td>
+              <td><input type="text" name="phone_number" id="phone" value="{{ lawyer.phone_number }}" required /></td>
+            </tr>
+            <tr>
+              <td>이메일</td>
+              <td><input type="email" name="email" value="{{ lawyer.email }}" required /></td>
+            </tr>
+            <!-- <tr>
+              <td>본인인증</td>
+              <td><input type="text" required /></td>
+            </tr> -->
+            <tr>
+              <td>사무실주소</td>
+              <td class="address">
+                <div>
+                  <input type="text" id="recipient_postcode" name="home_postcode" placeholder="우편번호"
+                    value="{{ lawyer.home_postcode }}" readonly required>
+                  <button type="button" class="address_button" onclick="recipient_address_button();">검색</button><br>
+                </div>
+                <input type="text" id="recipient_roadAddress" name="home_roadAddress" placeholder="도로명주소"
+                  value="{{ lawyer.home_roadAddress }}" readonly required>
+                <div id="recipient_guide" style="color:#999;display:none"></div>
+                <input type="text" id="recipient_detailAddress" name="home_detailAddress" placeholder="상세주소"
+                  value="{{ lawyer.home_detailAddress }}" required>
+              </td>
+            </tr>
+            <tr>
+              <td>사진</td>
+              <!-- input file 은 보안상의 문제로 값 수정 불가 -->
+              <td><input type="file" name="image" /></td>
+            </tr>
+            <tr>
+              <td>아이디 분실 시 질문</td>
+              <td>
+                <select name="find_id_question" id="">
+                  <option value="father_name">아버지 성함은?</option>
+                  <option value="mother_name">어머니 성함은?</option>
+                  <option value="book">인상깊게 읽은 책 이름은?</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>아이디 분실 시 답변</td>
+              <td><input type="text" name="find_id_answer" value="{{lawyer.find_id_answer}}" required /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 학력사항 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          학력사항 입력
+        </div>
+        <div class="form_horizontal">
+          <table>
+            <colgroup>
+              <col style="width: 12%" />
+              <col style="width: 22%" />
+              <col style="width: 22%" />
+              <col style="width: 22%" />
+              <col style="width: 22%" />
+            </colgroup>
+            <tr>
+              <td></td>
+              <td>학교명</td>
+              <td>전공</td>
+              <td>입학</td>
+              <td>졸업</td>
+            </tr>
+            <tr>
+              <td>고등학교</td>
+              <td><input type="text" name="high_school" value="{{ lawyer.high_school }}" /></td>
+              <td><input type="text" name="high_school_major" value="{{ lawyer.high_school_major }}" /></td>
+              <td><input type="date" name="high_school_dmission_year" value="{{lawyer.high_school_dmission_year}}" />
+              </td>
+              <td><input type="date" name="high_school_graduation_year"
+                  value="{{lawyer.high_school_graduation_year}}" /></td>
+            </tr>
+            <tr>
+              <td>대학교</td>
+              <td><input type="text" name="university" value="{{ lawyer.university }}" /></td>
+              <td><input type="text" name="university_major" value="{{ lawyer.university_major }}" /></td>
+              <td><input type="date" name="university_dmission_year" value="{{lawyer.university_dmission_year}}" /></td>
+              <td><input type="date" name="university_graduation_year" value="{{lawyer.university_graduation_year}}" />
+              </td>
+            </tr>
+            <tr>
+              <td>대학원</td>
+              <td><input type="text" name="graduate_school" value="{{ lawyer.graduate_school }}" /></td>
+              <td><input type="text" name="graduate_school_major" value="{{ lawyer.graduate_school_major }}" /></td>
+              <td><input type="date" name="graduate_school_dmission_year"
+                  value="{{lawyer.graduate_school_graduation_year}}" /></td>
+              <td><input type="date" name="graduate_school_graduation_year"
+                  value="{{lawyer.graduate_school_graduation_year}}" /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 변호사 자격사항 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          변호사 자격사항 입력
+        </div>
+        <div class="form_vertical">
+          <table>
+            <colgroup>
+              <col style="width: 30%" />
+              <col style="width: 70%" />
+            </colgroup>
+            <tr>
+              <td>구분</td>
+              <td>
+                <!-- lawyer.qualification_division -->
+                <div class="input_radio">
+                  <input type="radio" id="input_1_1" name="qual_category" value="1"
+                    {% if lawyer.qualification_division == "1" %} checked {% endif %} />
+                  <label for="input_1_1">사법연수원 수료자-공직 경력 없음</label>
+                  <div class="check_radio"></div>
+                </div>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_2" name="qual_category" value="2"
+                    {% if lawyer.qualification_division == "2" %} checked {% endif %} />
+                  <label for="input_1_2">변호사 시험 합격자-공직 경력 없음</label>
+                  <div class="check_radio"></div>
+                </div>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_3" name="qual_category" value="3"
+                    {% if lawyer.qualification_division == "3" %} checked {% endif %} />
+                  <label for="input_1_3">판, 검사</label>
+                  <div class="check_radio"></div>
+                </div>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_4" name="qual_category" value="4"
+                    {% if lawyer.qualification_division == "4" %} checked {% endif %} />
+                  <label for="input_1_4">판,검사외 전,현직 모든 공직경력자 [재판 연구원, 경찰,
+                    단기군법무관(법무관 병역 복무), 공무원등]</label>
+                  <div class="check_radio"></div>
+                </div>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_5" name="qual_category" value="5"
+                    {% if lawyer.qualification_division == "5" %} checked {% endif %} />
+                  <label for="input_1_5">군법무관</label>
+                  <div class="check_radio"></div>
+                </div>
+              </td>
+            </tr>
+            <!-- lawyer.marged_qual -->
+            <tbody id="capacity">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- 자기소개 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          자기소개 입력
+        </div>
+        <div class="form_vertical">
+          <table>
+            <tr>
+              <td style="padding-left: 0">
+                <textarea name="introduce" required> {{ lawyer.introduce }} </textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 전문분야 입력 폼 -->
+      <div class="form_container" id="specialty_form">
+        <div class="form_title">
+          전문분야 선택
+        </div>
+        <div class="form_vertical">
+          <table>
+            <tr>
+              <td style="padding-left: 0">
+                {% for speciality in specialities %}
+                <div class="input_checkbox">
+                  <input type="checkbox" id="input_3_{{ speciality.id }}" name="fields" value="{{ speciality.id }}"
+                    {% if speciality in lawyer.speciality.all %} checked {% endif %} />
+                  <label for="input_3_{{ speciality.id }}">{{ speciality }}</label>
+                  <div class="check_checkbox"></div>
+                </div>
+                {% endfor %}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- <input id="merged_specialty" type="hidden" value="{{ lawyer.specialty }}">
+      <input class="merged_input" type="hidden" name="merged_specialty"> -->
+
+      <input class="merged_input" type="hidden" name="merged_qual">
+
+      <div class="submit_button">
+        <div onclick="lawyerSubmit()">수정하기</div>
+        <button type="submit" id="real_submit" style="display:none;"></button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block script_bottom %}
+<!-- 유효성 검사 -->
+
+<script src="{% static 'lawyerAccount/js/cleave.min.js'%}"></script>
+<script src="{% static 'lawyerAccount/js/cleave-phone.kr.js'%}"></script>
+<script src="{% static 'lawyerAccount/js/valid.js'%}"></script>
+
+
+<script src="{% static 'lawyerAccount/js/index_edit.js'%}"></script>
+<!-- 주소 값 넣기 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="{% static 'lawyerAccount/js/address.js'%}"></script>
+
+
+<script src="{% static 'lawyerAccount/js/lawyer_edit_page.js'%}"></script>
+
+
+
+{% endblock %}

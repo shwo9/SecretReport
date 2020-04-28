@@ -1,0 +1,105 @@
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+}
+
+#content .container {
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0 30px;
+}
+
+#report_card {
+  width: 80%;
+  height: 300px;
+  box-shadow: 0 5px 20px rgba(52, 58, 64, 0.15);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  margin: 20px 0 30px;
+}
+
+#report_card > div:first-child {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+#report_key {
+  padding: 20px 100px;
+  color: #4263eb;
+  background: white;
+  border: 2px solid #5c7cfa;
+  font-size: 50px;
+}
+
+#report_warning {
+  color: #ff1616;
+}
+
+div .service_button {
+  align-self: center;
+  background: white;
+  padding: 13px 50px;
+  color: #4263eb;
+  border: 1.5px solid #5c7cfa;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.service_button:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+div .service_button2 {
+  align-self: center;
+  background: white;
+  padding: 13px 50px;
+  color: #4263eb;
+  border: 1.5px solid #5c7cfa;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+
+@media (max-width: 650px) {
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  #report_card {
+    width: 100%;
+    display: flex;
+    margin: 20px 0 50px;
+  }
+  
+  #report_card > div:first-child {
+    font-size: 1.5rem;
+  }
+  
+  #report_key {
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .service_button {
+    padding: 13px 30px;
+    font-size: 1rem;
+  }
+}

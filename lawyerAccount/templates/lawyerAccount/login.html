@@ -1,0 +1,58 @@
+{% extends 'core/layout.html' %} {% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'lawyerAccount/css/login.css' %}" type="text/css" />
+{% endblock %} {% block content %}
+<div id="content">
+  <div class="container">
+    <div class="login_box">
+      <div>
+        <div class="exp1">회원로그인</div>
+        <div class="exp2">회원님의 아이디와 비밀번호를 입력해 주세요.</div>
+      </div>
+      <form id="login_form" method="POST" action="">
+        {% csrf_token %}
+        <div class="login_input">
+          <div class="login_username_div">
+            <div class="form_label">아이디</div>
+            <input type="text" id="username" name="username" />
+          </div>
+          <div class="login_password_div">
+            <div class="form_label">비밀번호</div>
+            <input type="password" id="password" name="password" />
+          </div>
+        </div>
+        <input id="login_button" type="submit" value="로그인" />
+      </form>
+      {% if messages %}
+      <div class="error_message" style="color:red">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="login_footer">
+      <div class="find_account">
+        <img src="{% static 'lawyerAccount/images/find_account_image.png' %}" alt="" />
+
+        <div class="find_account_comment">
+          아이디/비밀번호를 잊어버리셨나요?
+        </div>
+        <div>
+          <a class="find_account_button" href="{% url 'lawyerAccount:find_id' %}">아이디</a>
+          /
+          <a class="find_account_button" href="{% url 'lawyerAccount:find_password' %}">비밀번호 찾기</a>
+        </div>
+      </div>
+      <div class="sign_up">
+        <img src="{% static 'lawyerAccount/images/sign_up_image.png' %}" alt="" />
+
+        <div class="sign_up_comment">
+          회원이 아니신가요?
+        </div>
+        <a class="sign_up_button" href="{% url 'lawyerAccount:signup' %}">회원가입</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

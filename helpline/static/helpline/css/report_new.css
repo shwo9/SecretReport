@@ -1,0 +1,837 @@
+/* Initial Setttings */
+
+input {
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 300;
+  border: 1px solid #bac8ff;
+  transition: 0.1s border-color;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 300;
+  border: 1px solid #bac8ff;
+  transition: 0.1s border-color;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #5c7cfa;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+table,
+tbody {
+  width: 100%;
+}
+
+table td {
+  padding: 10px 0;
+}
+
+table tr td:first-child {
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding-left: 40px;
+}
+
+td input[type="text"]+input[type="text"] {
+  border-top: 0;
+}
+
+/* Content Style */
+
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+
+}
+
+#content .container {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#process {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.process_item {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.process_index {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #91a7ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.process_detail {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #495057;
+  text-align: center;
+}
+
+.process_border {
+  height: 3px;
+  flex: 1;
+  background: #dbe4ff;
+  margin: 0 10px;
+  margin-top: 25px;
+}
+
+.step_title {
+  margin-bottom: 80px;
+}
+
+.step_title h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.border {
+  height: 4px;
+  width: 150px;
+  background: #4263eb;
+}
+
+.error {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f03e3e;
+  position: absolute;
+  top: 100px;
+  left: 0;
+}
+
+.process_content {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+}
+
+.step_button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.step_button a {
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.step_button a:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+.step_button a:last-child {
+  margin-left: auto;
+}
+
+/* Step 1 Style */
+
+.form_notice_title {
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form_notice {
+  border-top: 1px solid #748ffc;
+  border-bottom: 1px solid #748ffc;
+  width: 100%;
+  padding: 40px 10px;
+  margin-bottom: 80px;
+}
+
+.form_title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-left: 2px solid #4263eb;
+  padding-left: 10px;
+  line-height: 1.2;
+}
+
+.form_notice ul,
+.form_notice ol {
+  padding: 0 0 0 30px;
+}
+
+.form_notice ul li,
+.form_notice ol li {
+  padding: 2px 0;
+}
+
+.form_notice ul+.form_title,
+.form_notice ul+p {
+  margin-top: 50px;
+}
+
+.form_agreement {
+  border-bottom: 1px solid #4263eb;
+  margin-bottom: 40px;
+}
+
+.form_agreement_title {
+  padding: 20px;
+  background: #91a7ff;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.form_agreement_body {
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+.form_agreement_body p {
+  margin-bottom: 10px;
+}
+
+.form_agreement_body label {
+  margin-right: 20px;
+}
+
+.form_agreement_body label input {
+  width: initial;
+}
+
+/* Step 2 Style */
+
+.form_certification {
+  border-top: 1px solid #748ffc;
+  border-bottom: 1px solid #748ffc;
+  width: 100%;
+  padding: 20px 0;
+  margin-bottom: 80px;
+}
+
+.form_certification tr:last-child td:first-child {
+  padding-left: 0px;
+}
+
+.form_certification .addressButton {
+  width: 100px;
+}
+
+.form_certification .addressButton button {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: 1px solid #bac8ff;
+  border-right: 0;
+  color: #495057;
+}
+
+.form_certification .addressInput {
+  flex: 1;
+}
+
+.sms_button {
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  background: white;
+  border: 1px solid #bac8ff;
+  outline: none;
+  transition: 0.1s border-color;
+  margin-top: 30px;
+}
+
+.sms_button:hover {
+  border-color: #5c7cfa;
+}
+
+/* Step 3 Style */
+
+.form_declare {
+  border-top: 1px solid #748ffc;
+  border-bottom: 1px solid #748ffc;
+  width: 100%;
+  margin-bottom: 80px;
+  padding: 20px 0;
+}
+
+.form_declare tr:nth-child(9) td:last-child,
+.form_declare tr:nth-child(10) td:last-child,
+.form_declare tr:nth-child(15) td:last-child {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form_declare tr:nth-child(9) td label,
+.form_declare tr:nth-child(10) td label,
+.form_declare tr:nth-child(15) td label {
+  padding: 10px 0;
+  padding-left: 40px;
+  position: relative;
+  z-index: 10;
+  font-size: 0.9rem;
+  width: 100%;
+  line-height: 1.2;
+  display: block;
+}
+
+.input_radio,
+.input_checkbox {
+  position: relative;
+  width: 50%;
+  padding: 8px 0;
+}
+
+.input_checkbox {
+  width: 100%;
+}
+
+.form_declare tr:nth-child(9) td input,
+.form_declare tr:nth-child(10) td input,
+.form_declare tr:nth-child(15) td input {
+  width: 2px;
+  height: 2px;
+  position: absolute;
+  /* visibility: hidden; */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.check_radio {
+  display: block;
+  position: absolute;
+  border: 2px solid #748ffc;
+  background: white;
+  border-radius: 100%;
+  height: 25px;
+  width: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.check_radio::before {
+  display: block;
+  position: absolute;
+  content: "";
+  border-radius: 100%;
+  height: 23px;
+  width: 23px;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  transition: background 0.1s;
+}
+
+.form_declare tr:nth-child(9) td input:checked~.check_radio::before,
+.form_declare tr:nth-child(10) td input:checked~.check_radio::before {
+  background: #748ffc;
+}
+
+.check_checkbox {
+  display: block;
+  position: absolute;
+  border: 2px solid #748ffc;
+  background: white;
+  height: 20px;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.check_checkbox::before {
+  display: block;
+  position: absolute;
+  content: "";
+  height: 19px;
+  width: 19px;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  transition: background 0.1s;
+}
+
+.form_declare tr:nth-child(15) input:checked~.check_checkbox::before {
+  background: #748ffc;
+}
+
+/* Step 4 Style */
+
+.lawyer_list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 80px;
+}
+
+.lawyer_search {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.lawyer_search_button {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.lawyer_search_button div {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: #5c7cfa;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.lawyer_search input {
+  width: 70%;
+}
+
+.lawyer_search button {
+  width: 25%;
+  margin-left: auto;
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.lawyer_search button:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+.lawyer_item {
+  width: 100%;
+  height: 140px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(52, 58, 64, 0.15);
+  display: flex;
+  transition: 0.15s box-shadow;
+  position: relative;
+  z-index: 5;
+}
+
+.lawyer_item:hover {
+  box-shadow: 0 5px 10px rgba(52, 58, 64, 0.15);
+}
+
+.lawyer_item+.lawyer_item {
+  margin-top: 30px;
+}
+
+.lawyer_detail {
+  display: flex;
+  align-items: center;
+}
+
+.lawyer_detail h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.lawyer_detail p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #868e96;
+}
+
+.lawyer_profile {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.lawyer_profile img {
+  height: 80px;
+  width: 80px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+  border-radius: 50%;
+}
+
+.lawyer_fields {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.lawyer_fields div {
+  font-size: 0.9rem;
+  color: #4263eb;
+  font-weight: 600;
+  padding-right: 5px;
+}
+
+.lawyer_item label {
+  position: absolute;
+  box-sizing: unset;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  top: 0;
+  left: 0;
+  padding: 20px;
+  z-index: 10;
+}
+
+.lawyer_item input {
+  display: none;
+}
+
+.check_lawyer_box {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 130px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.check_lawyer_box::before {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 130px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input[name="lawyer"]:checked~.check_lawyer_box::before {
+  border: 5px solid #4263eb;
+}
+
+.lawyer_info_icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+/* Step 5 Style */
+
+.lawyer_confirm .lawyer_item {
+  margin-bottom: 80px;
+}
+
+.lawyer_confirm_title,
+.declare_confirm_title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.declare_confirm_table {
+  border-top: 1px solid #748ffc;
+  border-bottom: 1px solid #748ffc;
+  width: 100%;
+  margin-bottom: 80px;
+  padding: 20px 0;
+}
+
+.declare_confirm_table input,
+.declare_confirm_table textarea {
+  border: none;
+  border-left: 1px solid #748ffc;
+  padding-left: 40px;
+}
+
+.declare_result {
+  border-left: 1px solid #748ffc;
+  padding: 10px;
+  padding-left: 40px;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.declare_result_textarea {
+  height: 100px;
+}
+
+/* 반응형 디자인 */
+
+@media (max-width: 650px) {
+
+  input,
+  textarea {
+    font-size: 0.8rem;
+  }
+
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  .process_item {
+    width: 40px;
+  }
+
+  .process_index {
+    width: 40px;
+    height: 40px;
+  }
+
+  .process_detail {
+    font-size: 0.6rem;
+    word-break: keep-all;
+  }
+
+  .step_title {
+    margin-bottom: 50px;
+  }
+
+  .step_title h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .border {
+    width: 80px;
+  }
+
+  .error {
+    font-size: 0.8rem;
+    top: 70px;
+  }
+
+  table tr td:first-child {
+    font-size: 1rem;
+    font-weight: 400;
+    padding-left: 0;
+    word-break: keep-all;
+  }
+
+  /* Step 1 Flexible Style */
+
+  .form_notice_title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .form_notice {
+    padding: 30px 10px;
+    margin-bottom: 50px;
+  }
+
+  .form_title {
+    font-size: 1.2rem;
+  }
+
+  .form_notice ul,
+  .form_notice ol {
+    padding: 0 0 0 20px;
+  }
+
+  .form_notice ul li,
+  .form_notice ol li {
+    padding: 2px 0;
+    font-size: 0.9rem;
+  }
+
+  .form_notice ul+.form_title,
+  .form_notice ul+p {
+    margin-top: 40px;
+  }
+
+  .form_agreement_title {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .form_agreement_body {
+    padding: 15px;
+    font-size: 0.8rem;
+  }
+
+  /* Step 2 Flexible Style */
+
+  .form_certification {
+    margin-bottom: 50px;
+  }
+
+  .form_certification .addressButton {
+    width: 50px;
+    word-break: keep-all;
+  }
+
+  /* Step 3 Flexible Style */
+
+  .form_declare {
+    margin-bottom: 50px;
+  }
+
+  .form_declare tr:nth-child(13) td:last-child {
+    font-size: 0.7rem;
+  }
+
+  .form_declare tr:nth-child(9) td label,
+  .form_declare tr:nth-child(10) td label,
+  .form_declare tr:nth-child(15) td label {
+    padding: 8px 0;
+    padding-left: 28px;
+    font-size: 0.7rem;
+    word-break: keep-all;
+  }
+
+  .input_radio,
+  .input_checkbox {
+    width: 100%;
+    padding: 5px 0;
+  }
+
+  .form_declare tr:nth-child(9) td input,
+  .form_declare tr:nth-child(10) td input,
+  .form_declare tr:nth-child(15) td input {
+    width: 18px;
+    height: 18px;
+    top: 55%;
+  }
+
+  .check_radio {
+    height: 18px;
+    width: 18px;
+    top: 55%;
+  }
+
+  .check_radio::before {
+    height: 16px;
+    width: 16px;
+    top: 55%;
+  }
+
+  /* Step 4 Flexible Style */
+
+  .lawyer_list {
+    margin-bottom: 50px;
+  }
+
+  .lawyer_item {
+    width: 100%;
+    height: 140px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(52, 58, 64, 0.15);
+    display: flex;
+    transition: 0.15s box-shadow;
+    position: relative;
+    z-index: 5;
+  }
+
+  .lawyer_detail h1 {
+    font-size: 1.2rem;
+  }
+
+  .lawyer_detail p {
+    font-size: 0.8rem;
+  }
+
+  .lawyer_profile {
+    margin-right: 15px;
+  }
+
+  /* Step 5 Style */
+
+  .lawyer_confirm .lawyer_item {
+    margin-bottom: 50px;
+  }
+
+  .lawyer_confirm_title,
+  .declare_confirm_title {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+  }
+
+  .declare_confirm_table {
+    margin-bottom: 50px;
+  }
+
+  .declare_confirm_table input,
+  .declare_confirm_table textarea {
+    border: none;
+    border-left: 1px solid #748ffc;
+    padding-left: 40px;
+  }
+
+  .declare_result {
+    border-left: 1px solid #748ffc;
+    padding: 10px;
+    padding-left: 40px;
+    font-weight: 300;
+    font-size: 1rem;
+  }
+
+  .declare_result_textarea {
+    height: 100px;
+  }
+}

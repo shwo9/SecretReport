@@ -1,0 +1,225 @@
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+}
+
+#content .container {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.login_box {
+  width: 748px;
+  margin: 0 auto;
+  background-color: #fafafa;
+  border: 0.5px solid #ececec;
+  padding: 50px;
+  margin-bottom: 30px;
+}
+
+.exp1 {
+  font-size: 21px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+.exp2 {
+  font-size: 16px;
+  margin-bottom: 35px;
+  color: #656566;
+}
+
+.login_input {
+  width: 80%;
+}
+
+.login_username_div,
+.login_password_div {
+  width: 100%;
+  display: flex;
+}
+
+.login_username_div {
+  margin-bottom: 8px;
+}
+
+#username,
+#password {
+  width: 75%;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 300;
+  border: 1px solid #bac8ff;
+  transition: 0.1s border-color;
+  background: white !important;
+}
+
+#username:focus,
+#password:focus {
+  border-color: #5c7cfa;
+}
+
+.form_label {
+  font-size: 19px;
+  width: 20%;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#login_form {
+  display: flex;
+}
+
+#login_button {
+  width: 20%;
+  outline: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login_button:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+/* login 하단 부분 */
+
+.login_footer {
+  width: 748px;
+  margin: 0 auto;
+  display: flex;
+
+}
+
+.find_account,
+.sign_up {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.find_keystore {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.find_account_image,
+.sign_up_image {
+  width: 50%;
+  background: #fafafa;
+  padding: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.find_account_comment,
+.sign_up_comment {
+  color: #656565;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.find_account_button,
+.sign_up_button {
+  text-decoration: underline;
+}
+
+.find_account_button:hover,
+.sign_up_button:hover {
+  color: #656565;
+}
+
+@media (max-width: 650px) {
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  .login_box {
+    width: 100%;
+    padding: 30px;
+  }
+
+  .exp1 {
+    font-size: 1.2rem;
+  }
+
+  .exp2 {
+    font-size: 1rem;
+  }
+
+  #login_form {
+    flex-direction: column;
+  }
+
+  .login_input {
+    width: 100%;
+  }
+
+  .login_username_div,
+  .login_password_div {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .form_label {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 3px;
+    font-size: 0.9rem;
+  }
+
+  #username,
+  #password {
+    width: 100%;
+  }
+
+  #login_button {
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 20px;
+    padding: 7px 0;
+  }
+
+  .login_footer {
+    width: 100%;
+  }
+
+  .find_account img,
+  .sign_up img {
+    width: 70%;
+    max-width: 130px;
+    max-height: 130px;
+    margin-bottom: 10px;
+  }
+
+  .find_account_comment,
+  .sign_up_comment {
+    font-size: 0.8rem;
+    word-break: keep-all;
+  }
+}

@@ -1,0 +1,166 @@
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+}
+
+#content .container {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#search_box{
+    width: 748px;
+    margin: 0 auto 30px;
+    background-color:#FAFAFA;
+    border: 0.5px solid #ECECEC;
+    padding: 50px;
+}
+
+.search_explanation {
+    margin: 0 auto;
+}
+
+.exp1 {
+    font-size: 21px;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+.exp2 {
+    font-size: 16px;
+    margin-bottom: 35px;
+    color: #656566;
+}
+
+#search_form {
+  display: flex;
+  justify-content: center;
+}
+
+.search_input{
+    width: 80%;
+}
+
+#search_search {
+    width: 100%;
+    display: flex;
+}
+
+#id_label, #pw_label {
+    font-size: 19px;
+    font-weight: bolder;
+    width: 20%;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+
+}
+
+#search_search > input {
+  width: 95%;
+  outline: none;
+  padding: 15px 20px;
+  font-size: 1rem;
+  font-weight: 300;
+  border: 1px solid #bac8ff;
+  transition: 0.1s border-color;
+  background: white !important;
+}
+
+#search_search > input:focus {
+    border-color: #5c7cfa;
+}
+
+#submit_button {
+  width: 20%;
+  outline: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#submit_button:hover  {
+  background: #5c7cfa;
+  color: white;
+}
+
+.warning_message {
+  color: #ff1616;
+  margin-top: 30px;
+}
+
+#organization_list {
+  width: 748px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.organization {
+  width: 30%;
+  text-align: center;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.organization:hover  {
+  background: #5c7cfa;
+  color: white;
+}
+
+@media (max-width: 650px) {
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  #search_box {
+    width: 100%;
+  }
+
+  #search_form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #search_search > input {
+    width: 100%;
+  }
+
+  .search_input {
+    width: 100%;
+  }
+
+  #submit_button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 0;
+  }
+
+  #organization_list {
+    width: 100%;
+  }
+
+  .organization {
+    width: 45%;
+  }
+}

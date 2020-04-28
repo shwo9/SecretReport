@@ -1,0 +1,57 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'helpline/css/report_confirm.css' %}">
+<link rel="stylesheet" href="{% static 'helpline/css/report_new.css' %}" type="text/css" />
+<link rel="stylesheet" href="{% static 'helpline/css/report_result.css' %}">
+<link rel="stylesheet" href="{% static 'lawyerAccount/css/login.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<div id="content">
+    <div class="container">
+        <div id="confirm_box">
+            <div class="confirm_explanation">
+                <div class="exp1">키스토어 인증</div>
+                <div class="exp2">키스토어와 비밀번호를 입력해 주세요.</div>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data" id="confirm_form">
+                {% csrf_token %}
+                <div class="confirm_input">
+                    <div id="confirm_id">
+                        <td>키스토어</td>
+                        <td><input type="file" name="keystore" required="required" /></td>
+                    </div>
+                    <div id="confirm_pw">
+                        <td>키스토어<br />비밀번호</td>
+                        <td><input type="password" name="pw" required="required" /></td>
+                    </div>
+                </div>
+                <input type="submit" value="확인" id="submit_button">
+            </form>
+
+            {% if messages %}
+            <div class="error_message">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="login_footer">
+                <div class="find_keystore">
+                  <img src="{% static 'lawyerAccount/images/find_account_image.png' %}" alt="" />
+          
+                  <div class="find_account_comment">
+                    키스토어를 잃어버리셨나요?
+                  </div>
+                  <div>
+                    <a class="find_account_button" href="{% url 'core:main' %}">키스토어 재발급</a>
+                  </div>
+                </div>
+              </div>
+    </div>
+</div>
+{% endblock %}

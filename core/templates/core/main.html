@@ -1,0 +1,285 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'core/css/style.css' %}" type="text/css" />
+<style>
+  #header {
+    background: transparent;
+    position: fixed;
+    color: white;
+  }
+</style>
+{% endblock %}
+
+{% block script_top %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+  jQuery(document).ready(function ($) {
+    $(".counter").counterUp({
+      delay: 10,
+      time: 1000
+    });
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Center Image -->
+<div id="center_image">
+  <div class="dimmer"></div>
+  <div class="container">
+    <div class="center_image_left">
+      <div class="center_image_left_top">
+        <div class="center_image_detail">
+          안전한 익명공익신고<br />
+          서비스를 제공합니다.
+        </div>
+      </div>
+      <div class="center_image_left_bottom">
+        <!-- a tag 써야하는지 -->
+        <button onclick="location.href='{% url 'helpline:report' %}'">공익신고접수</button>
+        <button onclick="location.href='{% url 'lawyerAccount:signup' %}'">변호사 가입하기</button>
+      </div>
+    </div>
+    <div class="center_image_right">
+      <div class="lawyer_list_title">
+        Lawyer List
+      </div>
+      <div style="width: 380px"></div>
+      {% for lawyer in lawyers_rank %}
+      <div class="lawyer_item">
+        <div class="lawyer_rank">{{ forloop.counter }}</div>
+        <div class="lawyer_detail">
+          <h1>{{ lawyer.name }}</h1>
+          <p>{{ lawyer.introduce }}</p>
+        </div>
+        <div class="lawyer_profile">
+          <img src="{{ lawyer.image.url }}" alt="">
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Figure -->
+<div id="figure">
+  <div class="container">
+    <div class="figure_item">
+      <p>가입된 변호사</p>
+      <div><span class="counter number">{{ lawyer_count }}</span> 명</div>
+    </div>
+    <div class="figure_item">
+      <p>누적 공익신고</p>
+      <div><span class="counter number">{{ report_count }}</span> 건</div>
+    </div>
+    <div class="figure_item">
+      <p>진행중인 공익신고</p>
+      <div><span class="counter number">{{ report_counting }}</span> 건</div>
+    </div>
+  </div>
+</div>
+<!-- Main Lawyer List -->
+<div id="main_lawyers">
+  <div class="container">
+    <div class="main_lawyer_search_button">
+      <div onclick="changeLawyerPage('minus')" class="lawyer_search_button_minus" style="margin-right:30px">〈</div>
+    </div>
+    <div class="main_lawyer_list">
+      <div class="main_lawyer_search">
+        <input type="text" name="search_lawyer" placeholder="변호사 또는 전문분야 입력"
+          style="border-radius:10px; text-align: center;">
+        <button type="button" onclick="changeLawyerPage('initial')">검색</button>
+      </div>
+
+
+      <div id="main_lawyer_list">
+        {% for lawyer in lawyers %}
+        <div class="main_lawyer_item">
+          <div class="main_lawyer_detail">
+            <div class="main_lawyer_profile">
+              <img src="{{ lawyer.image.url }}" />
+            </div>
+            <div>
+              <h1>{{ lawyer.name }} 변호사</h1>
+              <p>{{ lawyer.introduce }}</p>
+              <div class="main_lawyer_fields">
+                {% for specialty in lawyer.speciality.all %}
+                <div>#{{ specialty }}</div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="main_lawyer_info_icon">
+            <a href="#" target="_blank">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle"
+                class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512">
+                <path fill="#4263eb"
+                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="main_lawyer_search_button">
+      <div onclick="changeLawyerPage('plus')" class="lawyer_search_button_plus" style="margin-left:30px">〉</div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div id="features">
+  <div class="container">
+    <div class="features_item">
+      <div class="feature_icon">
+        <img src="{% static 'core/images/feature_icon_1.png' %}" alt="">
+      </div>
+      <div class="feature_head">익명성</div>
+      <div class="feature_detail">
+        변호사의 사건 수임 전 까지 신원정보는 절대 공개되지 않고, 변호사이외에는 아무도 볼 수 없습니다.
+      </div>
+    </div>
+    <div class="features_item">
+      <div class="feature_icon">
+        <img src="{% static 'core/images/feature_icon_2.png' %}" alt="">
+      </div>
+      <div class="feature_head">보안성</div>
+      <div class="feature_detail">
+        제보내용, 신원정보는 이중으로 암호화되어 저장되고, 2번의 로그인 과정을 거쳐야 확인할 수 있습니다.
+      </div>
+    </div>
+    <div class="features_item">
+      <div class="feature_icon">
+        <img src="{% static 'core/images/feature_icon_3.png' %}" alt="">
+      </div>
+      <div class="feature_head">신뢰성</div>
+      <div class="feature_detail">
+        블록체인 기술로 데이터의 조작, 불법적 열람이 불가능합니다.
+        </br></br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- App Page -->
+<div id="app_page">
+  <div class="container">
+    <div class="app_intro">
+      안전한 익명신고 서비스<br />
+      <div style="font-size: 50px">Secret Report</div>
+      <div class="border"></div>
+      <div class="market_button">
+        <div class="ios_bg"><a href="#"></a></div>
+        <div class="android_bg"><a href="#"></a></div>
+      </div>
+    </div>
+    <div class="app_image"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script_bottom %}
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="{% static 'core/js/jquery.counterup.min.js' %}"></script>
+
+<script>
+  {
+    %
+    if messages %
+  } {
+    %
+    for message in messages %
+  }
+  alert("{{message}}"); {
+    %
+    endfor %
+  } {
+    %
+    endif %
+  }
+</script>
+
+<script>
+  var st = 0;
+  $(window).scroll(function () {
+    st = $(this).scrollTop();
+    if (st > 50) {
+      $('#header').addClass('headerA')
+    } else {
+      $('#header').removeClass('headerA')
+    }
+  });
+</script>
+
+<script type="text/javascript">
+  var flag = false,
+    lawyerPage = 1;
+
+  function changeLawyerPage(direction) {
+    if (direction === "initial") {
+      flag = false;
+      lawyerPage = 1;
+    } else if (direction === "plus") {
+      if ("{{ lawyer_count }}" <= 5) return;
+      if (!flag) lawyerPage += 1;
+    } else if (direction === "minus") {
+      if (lawyerPage <= 1) lawyerPage = 1;
+      else {
+        lawyerPage -= 1;
+        flag = false;
+      }
+    }
+
+    $.ajax({
+      url: "{% url 'core:main_lawyer_list' %}",
+      data: {
+        page: lawyerPage,
+        search_lawyer: document.querySelector("input[name='search_lawyer']").value
+      },
+      datatype: "json",
+      success: function (data) {
+        if (lawyerPage >= data.page_count) flag = true;
+
+        let container = document.querySelector("#main_lawyer_list");
+        let result = "";
+        data['lawyers'].forEach(el => {
+          let specialityList = "";
+          el['speciality'].forEach(speciality => {
+            specialityList += `<div>#${ speciality.name }</div>`
+          });
+          result += `
+            <div class="main_lawyer_item" id="${el.id}">
+                <div class="main_lawyer_detail">
+                  <div class="main_lawyer_profile">
+                    <img src="${ el.image }" />
+                  </div>
+                  <div>
+                    <h1>${ el.name } 변호사</h1>
+                    <p>${ el.introduce }</p>
+                    <div class="main_lawyer_fields">
+                      ${ specialityList }
+                    </div>
+                  </div>
+                </div>
+              <div class="main_lawyer_info_icon">
+                <a href="https://naver.com" target="_blank">
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#4263eb" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg>
+                </a>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = result;
+      },
+      error: function (data) {
+        console.log(data.status);
+      }
+    });
+  }
+</script>
+{% endblock %}

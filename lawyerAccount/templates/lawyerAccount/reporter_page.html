@@ -1,0 +1,45 @@
+{% extends 'core/layout.html' %} {% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'lawyerAccount/css/report_page.css' %}" type="text/css" />
+{% endblock %} {% block content %}
+
+<div id="content">
+  <div class="container">
+    <div class="page_title">
+      <h1>신고자 상세 정보</h1>
+      <div class="border"></div>
+    </div>
+
+    <div class="table">
+    <table>
+    <colgroup>
+      <col style="width: 30%" />
+      <col style="width: 70%" />
+    </colgroup>
+    <tr>
+      <td>이름</td>
+      <td>{{ name }}</td>
+    </tr>
+    <tr>
+      <td>주민등록번호</td>
+      <td>{{ identification_number}}</td>
+    </tr>
+    <tr>
+      <td>주소</td>
+      <td>{{ address }}</td>
+    </tr>
+    <tr>
+      <td>상세 주소</td>
+      <td>{{ detail_address }}</td>
+    </tr>
+    <tr>
+      <td>연락처</td>
+      <td>{{ phone_number }}</td>
+    </tr>
+  </table>
+  </div>
+
+    
+  </div>
+</div>
+
+{% endblock %} 

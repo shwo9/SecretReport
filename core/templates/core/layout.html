@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>{% block title %}Secret Report{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'core/css/layout.css' %}" type="text/css" />
+
+  {% block style %} {% endblock %}
+  {% block script_top %} {% endblock %}
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="header">
+    <div class="container">
+      <a href="{% url 'core:main' %}" class="header_left">
+        <h1>Secret Report</h1>
+      </a>
+      <div class="header_right">
+        <div class="menu_item">
+          <span class="menu_text">Helpline</span>
+          <div class="dropdown">
+            <div class="dropdown_item" onclick="location.href='{% url 'helpline:report' %}'">헬프라인 신고</div>
+            <div class="dropdown_item" onclick="location.href='{% url 'helpline:report_result' %}'">신고내역 확인</div>
+          </div>
+        </div>
+        <div class="menu_item">
+          <span class="menu_text">Lawyer</span>
+          <div class="dropdown">
+
+            {% if user.lawyer.rank > 0 %}
+            <a href="{% url 'lawyerAccount:mypage' user.lawyer.id %}">
+              <div class="dropdown_item">변호사 페이지</div>
+            </a>
+            <a href="{% url 'lawyerAccount:logout' %}">
+              <div class="dropdown_item">로그아웃</div>
+            </a>
+            {% else %}
+            <a href="{% url 'lawyerAccount:signup' %}">
+              <div class="dropdown_item">변호사 가입</div>
+            </a>
+            <a href="{% url 'lawyerAccount:login' %}">
+              <div class="dropdown_item">변호사 로그인</div>
+            </a>
+            {% endif %}
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block content %} {% endblock %}
+
+  <!-- Footer -->
+  <div id="footer">
+    <div class="container">
+      <div class="footer_top">
+        <div class="footer_left">
+          <h1>Secret Report</h1>
+
+        </div>
+        <div class="footer_right">
+          <div class="footer_menu">
+            <div class="footer_menu_item">Helpline</div>
+            <div class="footer_menu_item"><a href="{% url 'helpline:report' %}">헬프라인 신고</a></div>
+            <div class="footer_menu_item"><a href="{% url 'helpline:report_result' %}">신고내역 확인</a></div>
+          </div>
+          <div class="footer_menu">
+            <div class="footer_menu_item">Lawyer</div>
+            {% if user.lawyer.rank > 0 %}
+            <div class="footer_menu_item"><a href="{% url 'lawyerAccount:mypage' user.lawyer.id %}">변호사 페이지</a></div>
+            <div class="footer_menu_item"><a href="{% url 'lawyerAccount:logout' %}">로그아웃</a></div>
+            {% else %}
+            <div class="footer_menu_item"><a href="{% url 'lawyerAccount:signup' %}">변호사 가입</a></div>
+            <div class="footer_menu_item"><a href="{% url 'lawyerAccount:login' %}">변호사 로그인</a></div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="footer_bottom">
+        Copyright © 2020 Hwiwoong Sung. All Rights Reserved.
+      </div>
+    </div>
+  </div>
+  {% block script_bottom %} {% endblock %}
+</body>
+
+</html>

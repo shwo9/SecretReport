@@ -1,0 +1,440 @@
+/* Initial Setttings */
+
+input,
+select {
+  width: 100%;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 300;
+  border: 1px solid #bac8ff;
+  transition: 0.1s border-color;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 300;
+  border: 1px solid #bac8ff;
+  transition: 0.1s border-color;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #5c7cfa;
+}
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+table,
+tbody {
+  width: 100%;
+}
+
+table td {
+  padding: 10px 0;
+}
+
+table tr td:first-child {
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding-left: 40px;
+}
+
+/* Content Style */
+
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+}
+
+#content .container {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.page_title {
+  margin-bottom: 80px;
+}
+
+.page_title h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.border {
+  height: 4px;
+  width: 150px;
+  background: #4263eb;
+}
+
+.form_container + .form_container {
+  margin-top: 80px;
+}
+
+.form_title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  border-left: 2px solid #4263eb;
+  padding-left: 10px;
+  line-height: 1.2;
+}
+
+.form_vertical,
+.form_horizontal {
+  padding: 20px 0;
+  border-top: 1px solid #748ffc;
+  border-bottom: 1px solid #748ffc;
+}
+
+.form_container:nth-child(6) tr td,
+.input_horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.form_container:nth-child(4) tr td label,
+.form_container:nth-child(6) tr td label,
+.input_horizontal label {
+  padding: 10px 0;
+  padding-left: 40px;
+  position: relative;
+  z-index: 10;
+  font-size: 0.9rem;
+  width: 100%;
+  line-height: 1.2;
+}
+
+.form_container:nth-child(4) tr td input[type="radio"],
+.form_container:nth-child(6) tr td input[type="checkbox"],
+.input_horizontal input[type="radio"] {
+  width: 2px;
+  height: 2px;
+  position: absolute;
+  /* visibility: hidden; */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.input_radio,
+.input_checkbox {
+  position: relative;
+  width: 100%;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.input_checkbox {
+  width: calc(100% / 3);
+}
+
+.check_radio {
+  display: block;
+  position: absolute;
+  border: 2px solid #748ffc;
+  background: white;
+  border-radius: 100%;
+  height: 25px;
+  width: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.check_radio::before {
+  display: block;
+  position: absolute;
+  content: "";
+  border-radius: 100%;
+  height: 23px;
+  width: 23px;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  transition: background 0.1s;
+}
+
+.form_container:nth-child(4) tr td input:checked ~ .check_radio::before,
+.form_container:nth-child(6) tr td input:checked ~ .check_checkbox::before,
+.input_horizontal input:checked ~ .check_radio::before {
+  background: #748ffc;
+}
+
+.check_checkbox {
+  display: block;
+  position: absolute;
+  border: 2px solid #748ffc;
+  background: white;
+  height: 20px;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.check_checkbox::before {
+  display: block;
+  position: absolute;
+  content: "";
+  height: 19px;
+  width: 19px;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  transition: background 0.1s;
+}
+
+.form_container:nth-child(4) .input_radio label {
+  font-size: 0.8rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.input_horizontal .input_radio {
+  width: 30% !important;
+}
+
+.submit_button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+}
+
+.submit_button div {
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+  margin-left: auto;
+}
+
+.submit_button div:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+.form_horizontal table tr td {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.form_horizontal table tr:first-child td {
+  text-align: center;
+}
+
+.form_horizontal table tr td:first-child {
+  padding-left: 0;
+  text-indent: 10px;
+}
+
+.gender_radio {
+  display: flex;
+  align-items: center;
+}
+
+.gender_radio input {
+  width: 30px;
+}
+
+.gender_radio label + label {
+  margin-left: 20px;
+}
+
+#recipient_postcode,
+.username_input {
+  width: 82%;
+  margin-right: 3%;
+}
+
+.address input,
+.address button {
+  margin-bottom: 7px;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+}
+
+.address div:first-child {
+  display: flex;
+}
+
+.address_button,
+.id_overlap_button {
+  outline: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+  margin-left: auto;
+  padding: 10px 8px;
+  display: block;
+  width: 15%;
+}
+
+.address_button:hover,
+.id_overlap_button:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+@media (max-width: 650px) {
+  table tr td:first-child {
+    font-size: 1rem;
+    font-weight: 400;
+    padding-left: 0;
+    word-break: keep-all;
+  }
+
+  input,
+  textarea {
+    font-size: 0.8rem;
+  }
+
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  .page_title {
+    margin-bottom: 50px;
+  }
+
+  .page_title h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .border {
+    width: 80px;
+  }
+
+  .form_container + .form_container {
+    margin-top: 50px;
+  }
+
+  .form_title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .form_container:nth-child(6) tr td,
+  .input_horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .form_container:nth-child(4) tr td label,
+  .form_container:nth-child(6) tr td label,
+  .input_horizontal label {
+    padding: 8px 0;
+    padding-left: 28px;
+    font-size: 0.7rem !important;
+    word-break: keep-all;
+  }
+
+  .form_container:nth-child(4) tr td input[type="radio"],
+  .form_container:nth-child(6) tr td input[type="checkbox"],
+  .input_horizontal input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    top: 55%;
+  }
+
+  .input_radio,
+  .input_checkbox {
+    padding: 5px 0;
+  }
+
+  .input_checkbox {
+    width: calc(100% / 3);
+  }
+
+  .check_radio {
+    height: 18px;
+    width: 18px;
+    top: 55%;
+  }
+
+  .check_radio::before {
+    height: 16px;
+    width: 16px;
+    top: 55%;
+  }
+
+  .input_horizontal .input_radio {
+    width: 50% !important;
+  }
+
+  .submit_button {
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  .submit_button div {
+    font-size: 1rem;
+    padding: 5px 20px;
+    margin-left: 0;
+  }
+
+  .form_horizontal table tr td {
+    padding-right: 3px;
+    padding-left: 3px;
+  }
+
+  .form_horizontal table tr td:first-child {
+    text-indent: 0;
+  }
+
+  #recipient_postcode,
+  .username_input {
+    width: 70%;
+    margin-right: 1%;
+  }
+
+  .address input,
+  .address button {
+    margin-bottom: 7px;
+  }
+
+  .address_button,
+  .id_overlap_button {
+    font-size: 0.7rem;
+    width: 25%;
+    padding: 0;
+  }
+}

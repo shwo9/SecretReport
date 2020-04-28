@@ -1,0 +1,121 @@
+/* Initial Settings */
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+table,
+tbody {
+  width: 100%;
+}
+
+table td {
+  padding: 15px 10px;
+  word-break: keep-all;
+  text-align: center;
+}
+
+table tr td:last-child {
+  text-align: left;
+  padding: 15px 30px;
+  border-left: 1px solid #748ffc;
+}
+
+/* Content Style */
+
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+}
+
+#content .container {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.table_first,
+.table_second {
+  width: 100%;
+}
+
+.table {
+  padding: 15px 0;
+  border-top: 1px solid #748ffc;
+  border-bottom: 1px solid #748ffc;
+  margin-bottom: 50px;
+}
+
+.table_title {
+  font-size: 2rem;
+  line-height: 0.5;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+.border {
+  height: 4px;
+  width: 70px;
+  background: #4263eb;
+  margin-bottom: 80px;
+}
+
+.mini_title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  border-left: 2px solid #4263eb;
+  padding-left: 10px;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.lawyer_fields {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.lawyer_fields_item {
+  padding: 5px 10px;
+  background: #748ffc;
+  color: white;
+  font-weight: 500;
+  border-radius: 3px;
+  font-size: 1.1rem;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 650px) {
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  .table_title {
+    margin-top: 0;
+    line-height: 1.8;
+  }
+
+  .table_title h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .border {
+    width: 80px;
+    margin-bottom: 50px;
+  }
+
+  .mini_title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+}

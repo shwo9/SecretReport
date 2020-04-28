@@ -1,0 +1,51 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'helpline/css/report_confirm.css' %}">
+{% endblock %} {% block content %}
+
+
+<div id="content">
+    <div class="container">
+        <div id="report_card">
+            <form method='POST' style="text-align:center; margin:20px;">
+                {% csrf_token %}
+                <input type="password" class="service_button" id="service_button2" name="password"
+                    placeholder="키스토어 비밀번호 입력" required="required"
+                    style="text-align:center; cursor:text; width: 300px;" />
+                &nbsp;&nbsp;
+                <button class="service_button" onclick="javascript:msg();" type='submit'>
+                    <a> 키스토어 다운로드 </a>
+                </button>
+                <br>
+                <br>
+                <div>
+                    다운로드가 완료되면 확인 버튼을 누르세요
+                </div>
+            </form>
+            <a id="confirm"> <button class="service_button">
+                    확인
+                </button></a>
+        </div>
+
+
+        <div style="color:red"><strong>* 키스토어 파일은 승인한 사건마다 생성됩니다.
+                <br>* 각 키스토어 파일마다 비밀번호를 다르게 설정하는 것을 추천합니다.
+                <br>* 키스토어 파일과 비밀번호 분실시 찾을 수 없으니 주의하여 주시기 바랍니다.</strong></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script_bottom %}
+<script type="text/javascript">
+    function msg() {
+        console.log('msg')
+        document.getElementById("confirm").setAttribute('href', "{% url 'core:main' %}");
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'core/layout.html' %} {% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'lawyerAccount/css/lawyer_my_page.css' %}" type="text/css" />
+{% endblock %} {% block content %}
+<div id="content">
+  <div class="container">
+    <div class="page_title">
+      <div class="page_title_content">
+        <h1>변호사 개인 페이지</h1>
+        <a class="lawyer_edit_button" href="{% url 'lawyerAccount:lawyer_edit' lawyer.id  %}">정보 수정</a>
+      </div>
+      <div class="border"></div>
+    </div>
+
+    <div class="table_first">
+      <div class="table_title">수임요청 목록</div>
+
+      <div class="table">
+        <table>
+          <colgroup>
+            <col style="width: 20%" />
+            <col style="width: 50%" />
+            <col style="width: 30%" />
+          </colgroup>
+          <tr>
+            <td>신고서 ID</td>
+            <td>제목</td>
+            <td>신고 날짜</td>
+          </tr>
+          {% for report, report_info in report_list_decrypt.items %}
+          <tr>
+            <td>
+              <a href="{% url 'lawyerAccount:report_page' report.id %}" style="color: black; text-decoration: none; ">
+                {{report_info.id}}
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'lawyerAccount:report_page' report.id %}" style="color: black; text-decoration: none; ">
+                {{report_info.title}}
+              </a>
+            </td>
+            <td>{{report_info.created_at}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+
+    <div class="table_second">
+      <div class="table_title">승인한 신고 목록</div>
+
+      <div class="table">
+        <table>
+          <colgroup>
+            <col style="width: 20%" />
+            <col style="width: 50%" />
+            <col style="width: 30%" />
+          </colgroup>
+          <tr>
+            <td>신고서 ID</td>
+            <td>제목</td>
+            <td>신고 날짜</td>
+          </tr>
+          {% for report, report_info in report_ack_list_decrypt.items %}
+
+          <tr>
+            <td>
+              <a href="{% url 'lawyerAccount:report_page' report.id %}" style="color: black; text-decoration: none; ">
+                {{report_info.id}}
+              </a>
+            </td>
+            <td>
+              <a href="{% url 'lawyerAccount:report_page' report.id %}" style="color: black; text-decoration: none;">
+                {{report_info.title}}
+              </a>
+            </td>
+            <td>{{report_info.created_at}}</td>
+          </tr>
+          {% endfor %}
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

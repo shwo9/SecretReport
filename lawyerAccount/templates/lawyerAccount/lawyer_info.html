@@ -1,0 +1,71 @@
+{% extends 'core/layout.html' %} {% load static %} {% block style %}
+<link
+  rel="stylesheet"
+  href="{% static 'lawyerAccount/css/lawyer_info.css' %}"
+  type="text/css"
+/>
+{% endblock %} {% block content %}
+<div id="content">
+  <div class="container">
+    <div class="table_title">홍길동 변호사</div>
+    <div class="border"></div>
+
+    <div class="mini_title">이력사항</div>
+    <div class="table">
+      <table>
+        <colgroup>
+          <col style="width: 30%" />
+          <col style="width: 70%" />
+        </colgroup>
+        <tr>
+          <td>학력</td>
+          <td>abc</td>
+        </tr>
+        <tr>
+          <td>자격</td>
+          <td>abc</td>
+        </tr>
+        <tr>
+          <td>기타</td>
+          <td>abc</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="mini_title">주요분야</div>
+    <div class="lawyer_fields">
+      <div class="lawyer_fields_item">이혼</div>
+      <div class="lawyer_fields_item">성범죄</div>
+      <div class="lawyer_fields_item">재산범죄</div>
+      <div class="lawyer_fields_item">부동산</div>
+      <div class="lawyer_fields_item">재개발/재건축</div>
+    </div>
+
+    <div class="mini_title">수임사례</div>
+    <div class="table">
+      <table>
+        <colgroup>
+          <col style="width: 30%" />
+          <col style="width: 70%" />
+        </colgroup>
+        <tr>
+          <td>title1</td>
+          <td>contents1</td>
+        </tr>
+        <tr>
+          <td>title2</td>
+          <td>contents2</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="mini_title">사무실정보</div>
+    <div class="lawyer_office">
+      <div class="lawyer_office_phone">☎ 010-0000-0000</div>
+      <div class="lawyer_office_address">
+        서울특별시 동대문구 전농동 서울시립대로 163
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

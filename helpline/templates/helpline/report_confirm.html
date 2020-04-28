@@ -1,0 +1,74 @@
+{% extends 'core/layout.html' %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'helpline/css/report_confirm.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="content" style="text-align:center;">
+  <div class="container">
+    <div id="report_card">
+      <div>신고서 ID</div>
+      <div id="report_key">
+        {{ report.unique_key }}
+      </div>
+      <div id="report_warning">* 신고서 ID는 재발급 되지 않으니, 반드시 저장해두시기 바랍니다.
+        <br>* 키스토어 파일과 비밀번호 분실시 찾을 수 없으니 주의하여 주시기 바랍니다.
+      </div>
+    </div>
+    <br>
+    <form method='POST'>
+      <input type="password" class="service_button" id="service_button2" name="password3" placeholder="키스토어 비밀번호 입력"
+        required="required" style="text-align:center; cursor:text; width: 300px;" />
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button name="download" class="service_button" type='submit' onclick="msg();" style="text-align:center;">
+        키스토어 다운로드
+      </button>
+      <br>
+    </form>
+
+    <div>
+    <br>
+      다운로드가 완료되면 확인 버튼을 누르세요
+    </div>
+    <br>
+    <a id="confirm"> <button class="service_button">
+        확인
+      </button></a>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block script_bottom %}
+<script type="text/javascript">
+    function msg() {
+        console.log('msg')
+        document.getElementById("confirm").setAttribute('href', "{% url 'core:main' %}");
+    }
+</script>
+{% endblock %}
+
+<!-- <script type="text/javascript">
+  // function download() {
+  //   console.log(document.getElementById("confirm").getAttribute("href"))
+  //   console.log("click download")
+  //   document.getElementById("confirm").setAttribute('href', "http://115.145.154.101:8000/");
+  //   console.log("click download")
+
+
+  // }
+  function resultPopup() {
+    var popupX = (window.screen.width - 992) / 2;
+    var popupY = (window.screen.height - 600) / 2;
+    window.open(
+      '{% url '
+      helpline: report_result ' %}', 'result',
+      'width=992, height=600, left=' + popupX + ', top=' + popupY
+    );
+    console.log(popupX, popupY)
+  }
+</script> -->

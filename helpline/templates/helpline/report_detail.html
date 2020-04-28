@@ -1,0 +1,163 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'helpline/css/report_detail.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+  <div id="content">
+    <div class="container">
+      <div class="page_title">
+        <h1>신고 내역 상세 정보</h1>
+        <div class="border"></div>
+      </div>
+
+
+
+      <div class="table_first">
+        <div class="table_title">{{ report_title }}
+        
+        
+        
+        {% if report.lawyer_ack == '2' %}
+        <div class="button_container">
+          <a href="{% url 'chatting:enter_chatting_room' report.id %}"
+          onclick="chattingPopup(); return false;">
+          채팅방 입장
+          </a>
+        </div>
+        {% endif %}
+        {% if report.lawyer_ack == '3' %}
+        <div class="button_container">
+          <a href="{% url 'helpline:report_reoffer' report.pk %}">재신청</a>
+        </div>
+        {% endif %}
+        
+        </div>
+
+
+        <div class="table">
+          <table>
+            <colgroup>
+              <col style="width: 30%" />
+              <col style="width: 70%" />
+            </colgroup>
+            <tr>
+              <td>기관명</td>
+              <td style="border:0px;">{{ report.organization.name }}</td>
+            </tr>
+            <tr>
+              <td>누가</td>
+              <td style="border:0px;">{{ report_who }}</td>
+            </tr>
+            <tr>
+              <td>언제</td>
+              <td style="border:0px;">{{ report_when }}</td>
+            </tr>
+            <tr>
+              <td>어디서</td>
+              <td style="border:0px;">{{ report_where }}</td>
+            </tr>
+            <tr>
+              <td>내용</td>
+              <td style="border:0px;">{{ report_content }}</td>
+            </tr>
+            <tr>
+              <td>이 문제를 아는 사람</td>
+              <td style="border:0px;">{{ report_witness }}</td>
+            </tr>
+            <tr>
+              <td>이 문제의 확인 방법</td>
+              <td style="border:0px;">{{ report_method }}</td>
+            </tr>
+            <tr>
+              <td>이 문제의 파악 경위</td>
+              <td style="border:0px;">{{ report_grasp }}</td>
+            </tr>
+            <tr>
+              <td>기간</td>
+              <td style="border:0px;">{{ report_term }}</td>
+            </tr>
+            {% if report.reportfile_set.all %}
+              <tr>
+                <td style="border:0px;">첨부파일</td>
+                <td style="border:0px;">
+                  {% for file in report.reportfile_set.all %}
+                    {{ file.url }}
+                    <a href="{{ file.file.url }}" download target="_blank">{{ file.filename }}</a><br>
+                  {% endfor %}
+                </td>
+              </tr>
+            {% endif %}
+            {% if report.lawyer %}
+              <tr>
+                <td>변호사</td>
+                <td style="border:0px;">{{ report.lawyer.name }} 변호사</td>
+              </tr>
+            {% endif %}
+            <tr>
+              <td>수임 여부</td>
+              <td id="table_lawyer_ack" style="border:0px;">
+                {{ report_lawyer_ack }}
+              </td>
+            </tr>
+            {% if report.lawyer_ack == '3' %}
+              <tr>
+                <td>거절 사유</td>
+                <td style="border:0px;">{{ report.lawyer_refuse_msg }}</td>
+              </tr>
+            {% endif %}
+          </table>
+        </div>
+      </div>
+
+      <div class="table_first">
+        <div class="table_title" style="margin-top:30px;">접근 로그</div>
+
+        <div class="table">
+          <table>
+            <colgroup>
+              <col style="width: 40%" />
+              <col style="width: 30%" />
+              <col style="width: 30%" />
+            </colgroup>
+            <tr>
+                <td style="text-align:center;"> TxHash </td>
+                <td style="text-align:center;"> 확인한 사람 </td>
+                <td style="border-right:0px; text-align:center;"> 시간 </td>
+            </tr>
+            {% for log, log_info in logs.items %}
+            <tr>
+              <td>
+              <a href="https://sidescan.luniverse.io/chains/5300575914426995782/transactions/{{log_info.txhash}}">
+              {{ log_info.txhash }}</a></td>
+              <td style="text-align:center">{% if log.user == "lawyer" %} 변호사 
+                 {% else %} 신고자 {% endif %} </td>
+              <td style="border-right:0px;">{{ log_info.timestamp }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        
+        </div>
+      </div> 
+      
+      <!-- <form method="POST">
+        <div class="button_container"><input type="submit">로그 확인</input></div>
+      </form> -->
+    </div>
+  </div>
+{% endblock %}
+
+{% block script_bottom %}
+  <script>
+    function chattingPopup() {
+      var popupX = (window.screen.width - 500) / 2;
+      var popupY = (window.screen.height - 600) / 2;
+      window.open(
+          '{% url 'chatting:enter_chatting_room' report.id %}', 'result',
+          'width=500, height=600, left=' + popupX + ', top=' + popupY
+      );
+    }
+  </script>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'core/layout.html' %} {% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'lawyerAccount/css/report_page.css' %}" type="text/css" />
+{% endblock %} {% block content %}
+
+<div id="content">
+  <div class="container">
+    <div class="page_title">
+      <h1>신고 내역 상세 정보</h1>
+      <div class="border"></div>
+    </div>
+
+    <div class="table_first">
+      <div class="table_title">{{ report_title }}
+      <div class="check_info">
+      {% if report.lawyer_ack == '2' %}
+      <a href="{% url 'lawyerAccount:reporterInfo' report.id %}">
+        신고자 정보 확인
+      </a>
+      {% endif %}
+      </div>
+      </div>
+
+
+      <div class="table">
+        <table>
+          <div>
+            <col style="width: 30%" />
+            <col style="width: 70%" />
+          </div>
+          {% if report.lawyer_ack == '2' %}
+          <tr>
+            <td>수임 승인 날짜</td>
+            <td>{{ report.lawyer_ack_date | date:'Y-m-d' }}</td>
+          </tr>
+          {% endif %}
+          <tr>
+            <td>기관명</td>
+            <td>{{ report.organization.name }}</td>
+          </tr>
+          <tr>
+            <td>누가</td>
+            <td>{{ report_who }}</td>
+          </tr>
+          <tr>
+            <td>언제</td>
+            <td>{{ report_when }}</td>
+          </tr>
+          <tr>
+            <td>어디서</td>
+            <td>{{ report_where }}</td>
+          </tr>
+          <tr>
+            <td>내용</td>
+            <td>{{ report_content }}</td>
+          </tr>
+          <tr>
+            <td>이 문제를 아는 사람</td>
+            <td>{{ report_witness }}</td>
+          </tr>
+          <tr>
+            <td>이 문제의 확인 방법</td>
+            <td>{{ report_method }}</td>
+          </tr>
+          <tr>
+            <td>이 문제의 파악 경위</td>
+            <td>{{ report_grasp }}</td>
+          </tr>
+          <tr>
+            <td>기간</td>
+            <td>{{ report_term }}</td>
+          </tr>
+          {% if report.reportfile_set.all %}
+          <tr>
+            <td>첨부파일</td>
+            <td>
+              {% for file in report.reportfile_set.all %}
+              {{ file.url }}
+              <a href="{{ file.file.url }}" download>{{ file.filename }}</a><br>
+              {% endfor %}
+            </td>
+          </tr>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+    
+    <div class="button_container">
+      {% if report.lawyer_ack == '1' %}
+      <a href="{% url 'lawyerAccount:lawyer_ack' report.id %}">승인</a>
+      <a id="refuse" onclick="msg();">거절</a>
+
+      {% else %}
+      <a href="{% url 'chatting:enter_chatting_room' report.id %}" onclick="chattingPopup(); return false;">
+        채팅방 입장
+      </a>
+      {% endif %}
+      
+    </div>
+
+    <div class="reason" style="margin:0 auto; margin-top:30px;">
+    <form method="POST" id="refuse_msg">
+      {% csrf_token %}
+    </form>
+    </div>
+
+  </div>
+</div>
+{% endblock %} 
+
+{% block script_bottom %}
+<script>
+
+
+
+
+  refuse_msg=document.querySelector('#refuse_msg');
+  function msg() {
+    console.log('ㅇㅇ');
+    refuse_msg.innerHTML = `
+      <div id="reason" style="text-align:center;">
+      거절사유입력
+      <input class="wr_reason" type="text" name="msg" />
+      <input type ="submit" name="submit" value="확인"/>      
+      </div>
+    `;
+  }
+
+
+
+
+</script>
+<script>
+  function chattingPopup() {
+    var popupX = (window.screen.width - 500) / 2;
+    var popupY = (window.screen.height - 600) / 2;
+    window.open(
+      '{% url '
+      chatting: enter_chatting_room ' report.id %}', 'result',
+      'width=500, height=600, left=' + popupX + ', top=' + popupY
+    );
+  }
+  
+  
+</script>
+{% endblock %}

@@ -1,0 +1,169 @@
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+}
+
+#content .container {
+  flex-direction: column;
+  justify-content: center;
+}
+
+#confirm_box {
+  width: 748px;
+  margin: 0 auto 30px;
+  background-color: #fafafa;
+  border: 0.5px solid #ececec;
+  padding: 50px;
+}
+
+.confirm_explanation {
+  margin: 0 auto;
+}
+
+.exp1 {
+  font-size: 21px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+.exp2 {
+  font-size: 16px;
+  margin-bottom: 35px;
+  color: #656566;
+}
+
+#confirm_form {
+  display: flex;
+  justify-content: center;
+}
+
+.confirm_input {
+  width: 80%;
+  margin-right: 30px;
+}
+
+#confirm_id,
+#confirm_pw {
+  width: 100%;
+  display: flex;
+}
+
+#confirm_id {
+  margin-bottom: 10px;
+}
+
+#id_label,
+#pw_label {
+  font-size: 19px;
+  width: 20%;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#confirm_id>input,
+#confirm_pw>input {
+  width: 75%;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 300;
+  border: 1px solid #bac8ff;
+  transition: 0.1s border-color;
+  background: white !important;
+  margin-left: 30px;
+
+}
+
+#confirm_id>input:focus,
+#confirm_pw>input:focus {
+  border-color: #5c7cfa;
+}
+
+#submit_button {
+  width: 20%;
+  outline: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#submit_button:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+.error_message {
+  color: #ff1616;
+  margin-top: 20px;
+}
+
+@media (max-width: 650px) {
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  #confirm_box {
+    width: 100%;
+    padding: 30px;
+  }
+
+  .confirm_explanation {
+    margin: 0 auto;
+  }
+
+  .exp1 {
+    font-size: 1.2rem;
+  }
+
+  .exp2 {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    word-break: keep-all;
+  }
+
+  #confirm_form {
+    flex-direction: column;
+  }
+
+  .confirm_input,
+  #confirm_id>input,
+  #confirm_pw>input {
+    width: 100%;
+  }
+
+  #confirm_id,
+  #confirm_pw {
+    flex-direction: column;
+  }
+
+  #id_label,
+  #pw_label {
+    font-size: 1rem;
+    width: 100%;
+    display: block;
+    margin-right: 0;
+    margin-bottom: 3px;
+  }
+
+  #submit_button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 7px 0;
+    margin-top: 30px;
+  }
+}

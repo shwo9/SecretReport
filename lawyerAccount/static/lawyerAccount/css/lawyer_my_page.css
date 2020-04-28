@@ -1,0 +1,163 @@
+/* Initial Settings */
+
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+
+table,
+tbody {
+  width: 100%;
+
+}
+
+table td {
+  font-size: 14px;
+  padding: 15px 10px;
+  word-break: break-all;
+  text-align: center;
+  border-right: 1px solid #748ffc;
+
+}
+
+table tr td:last-child {
+  text-align: left;
+  padding: 15px 30px;
+  border-right: 0px solid #748ffc;
+
+}
+
+table tr:first-child td {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+
+}
+
+/* Content Style */
+
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+}
+
+#content .container {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.page_title {
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+.page_title_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page_title h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.border {
+  height: 4px;
+  width: 150px;
+  background: #4263eb;
+}
+
+.table_first {
+  margin-bottom: 80px;
+}
+
+.table_first,
+.table_second {
+  width: 100%;
+}
+
+.table {
+  padding: 15px 0;
+  border-top: 1px solid #748ffc;
+  border-bottom: 1px solid #748ffc;
+}
+
+.table_title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  border-left: 2px solid #4263eb;
+  padding-left: 10px;
+  line-height: 1.2;
+}
+
+.lawyer_edit_button {
+  outline: none;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1.5px solid #5c7cfa;
+  background: white;
+  color: #5c7cfa;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s all;
+  margin-left: auto;
+  margin-bottom: 20px;
+}
+
+.lawyer_edit_button:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+@media (max-width: 650px) {
+  table {
+    font-size: 0.9rem;
+  }
+
+  table tr:first-child td {
+    font-size: 1rem;
+  }
+
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  .page_title {
+    margin-bottom: 50px;
+  }
+
+  .page_title h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .border {
+    width: 80px;
+  }
+
+  .table_first {
+    margin-bottom: 50px;
+  }
+
+  .table_title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .lawyer_edit_button {
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    margin: 0;
+    margin-bottom: 8px;
+  }
+}

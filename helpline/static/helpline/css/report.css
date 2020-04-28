@@ -1,0 +1,139 @@
+/* Content Style */
+
+#content {
+  width: 800px;
+  margin: 50px auto;
+  position: relative;
+  z-index: 5;
+}
+
+#content .container {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.service_title {
+  margin-bottom: 80px;
+}
+
+.service_title h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.border {
+  height: 4px;
+  width: 150px;
+  background: #4263eb;
+}
+
+.service_intro {
+  display: flex;
+  width: 100%;
+}
+
+.service_intro + .service_intro {
+  margin-top: 50px;
+}
+
+.service_icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, #748ffc, #4263eb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(52, 58, 64, 0.3);
+  margin-right: 40px;
+}
+
+.service_icon img {
+  width: 35%;
+}
+
+.service_intro:nth-last-child(2) img {
+  width: 45%;
+}
+
+.service_right {
+  flex: 1;
+}
+
+.service_index {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #4263eb;
+  line-height: 0.9;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.service_detail {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #495057;
+  word-break: keep-all;
+  width: 100%;
+}
+
+.service_button {
+  margin-top: 50px;
+  align-self: center;
+  background: white;
+  padding: 13px 100px;
+  color: #4263eb;
+  border: 1.5px solid #5c7cfa;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.service_button:hover {
+  background: #5c7cfa;
+  color: white;
+}
+
+@media (max-width: 650px) {
+  #content {
+    width: 100%;
+  }
+
+  #content .container {
+    padding: 0 20px;
+  }
+
+  .service_title {
+    margin-bottom: 50px;
+  }
+
+  .service_title h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .border {
+    width: 80px;
+  }
+
+  .service_icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .service_index {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .service_detail {
+    font-size: 1rem;
+  }
+
+  .service_button {
+    padding: 13px 50px;
+    font-size: 1rem;
+  }
+}

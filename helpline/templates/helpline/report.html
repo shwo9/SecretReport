@@ -1,0 +1,72 @@
+{% extends 'core/layout.html' %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'helpline/css/report.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+  <!-- Content -->
+  <div id="content">
+    <div class="container">
+      <div class="service_title">
+        <h1>Secret Report 서비스 소개</h1>
+        <div class="border"></div>
+      </div>
+
+      <div class="service_intro">
+        <div class="service_icon">
+          <img src="{% static 'helpline/images/service_icon_1.png' %}" />
+        </div>
+        <div class="service_right">
+          <div class="service_index">1</div>
+          <div class="service_detail">
+            본인인증은 필수 등록 사항입니다.
+          </div>
+        </div>
+      </div>
+      <div class="service_intro">
+        <div class="service_icon">
+          <img src="{% static 'helpline/images/service_icon_2.png' %}" />
+        </div>
+        <div class="service_right">
+          <div class="service_index">2</div>
+          <div class="service_detail">
+            본인인증 후, 신원 데이터는 암호화 저장되며 원본 데이터는
+            삭제됩니다.
+          </div>
+        </div>
+      </div>
+      <div class="service_intro">
+        <div class="service_icon">
+          <img src="{% static 'helpline/images/service_icon_3.png' %}" />
+        </div>
+        <div class="service_right">
+          <div class="service_index">3</div>
+          <div class="service_detail">
+            암호화된 신원 데이터는 필요에 따라 국민권익위원회, 변호사,<br>
+            공익위원의 합의에 따라 열람 될 수 있습니다.
+          </div>
+        </div>
+      </div>
+      <div class="service_intro">
+        <div class="service_icon">
+          <img src="{% static 'helpline/images/service_icon_4.png' %}" />
+        </div>
+        <div class="service_right">
+          <div class="service_index">4</div>
+          <div class="service_detail">
+            공익신고자 보호법에 따라 사용자의 인적사항은<br>국민권익위원회에
+            등록됩니다.
+          </div>
+        </div>
+      </div>
+      <br><br>
+      <div class="service_button" onclick="location.href='{% url 'helpline:report_search' %}'">
+        헬프라인 신고
+      </div>
+      <br><br>
+    </div>
+  </div>
+{% endblock %}

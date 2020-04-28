@@ -1,0 +1,82 @@
+{% extends 'core/layout.html' %} {% load static %} {% block style %}
+<link
+  rel="stylesheet"
+  href="{% static 'lawyerAccount/css/find_id_page.css' %}"
+  type="text/css"
+/>
+{% endblock %} {% block content %}
+<div id="content">
+  <div class="container">
+    <div class="login_box">
+      <div>
+        <div class="exp1">아이디 찾기</div>
+        <div class="exp2">회원가입 시 작성했던 질문과 답변을 입력해주세요.</div>
+      </div>
+      <form id="find_id_form" method="POST" action="">
+        {% csrf_token %}
+        <div class="find_id_input">
+          <div class="find_id_question_div">
+            <div class="form_label">질문</div>
+            <select name="find_id_question" id="find_id_question">
+              <option value="father_name">아버지 성함은?</option>
+              <option value="mother_name">어머니 성함은?</option>
+              <option value="book">인상깊게 읽은 책 이름은?</option>
+            </select>
+          </div>
+          <div class="find_id_answer_div">
+            <div class="form_label">답변</div>
+            <input
+              type="text"
+              id="find_id_answer"
+              name="find_id_answer"
+              required
+            />
+          </div>
+        </div>
+        <input id="find_id_button" type="submit" value="찾기" />
+      </form>
+      {% if find_check == None %} {% elif find_check %}
+      <div class="message">
+        아이디는 <strong>{{ username }}</strong> 입니다.
+      </div>
+
+      {% else %}
+      <div class="message">해당하는 아이디가 존재하지 않습니다.</div>
+
+      {% endif %}
+    </div>
+
+    <div class="login_footer">
+      <div class="find_account">
+        <img
+          src="{% static 'lawyerAccount/images/find_account_image.png' %}"
+          alt=""
+        />
+        <div class="find_account_comment">
+          비밀번호를 잊어버리셨나요?
+        </div>
+        <div>
+          <a
+            class="find_account_button"
+            href="{% url 'lawyerAccount:find_password' %}"
+            >비밀번호 찾기</a
+          >
+        </div>
+      </div>
+      <div class="sign_up">
+        <img
+          src="{% static 'lawyerAccount/images/sign_up_image.png' %}"
+          alt=""
+        />
+
+        <div class="sign_up_comment">
+          회원이 아니신가요?
+        </div>
+        <a class="sign_up_button" href="{% url 'lawyerAccount:signup' %}"
+          >회원가입</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

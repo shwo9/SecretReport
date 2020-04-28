@@ -1,0 +1,43 @@
+{% extends 'core/layout.html' %}
+
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'helpline/css/report_search.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div id="content">
+    <div class="container">
+      <div id="search_box">
+        <div class="search_explanation">
+          <div class="exp1">헬프라인 신고</div>
+          <div class="exp2">기관(기업)명을 검색해 주세요.</div>
+        </div>
+        <form action="" method="get" id="search_form">
+          <div class="search_input">
+            <div id="search_search">
+              <input type="text" name="search" value="{{ search }}">
+            </div>
+          </div>
+          <input type="submit" value="검색" id="submit_button">
+        </form>
+        <div class="warning_message">
+          신고 후 발급되는 신고서 ID와 비밀번호는 재발급이 불가능하오니 반드시 메모하세요.
+        </div>
+
+      </div>
+      {% if org_list %}
+        <div id="organization_list">
+        {% for org in org_list %}
+          <a class="organization" href="{% url 'helpline:report_new' org.pk %}">
+            {{ org.name }}
+          </a>
+        {% endfor %}
+        </div>
+        <div></div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

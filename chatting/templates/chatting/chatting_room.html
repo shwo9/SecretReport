@@ -1,0 +1,82 @@
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Secret Report</title>
+  <link
+    rel="stylesheet"
+    href="{% static 'chatting/css/chatting_room.css' %}"
+    type="text/css"
+  />
+</head>
+
+<body>
+  <div id="content">
+    <div class="container">
+      <div id="chatting_head">
+        {% if not user.is_authenticated %}
+        <div id="chatting_head_left">
+          <div class="chatting_head_name">{{ lawyer.name }} 변호사</div>
+        </div>
+        <div id="chatting_head_center">
+          Chatting
+        </div>
+        <div id="chatting_head_right">
+          <div class="chatting_head_name">신고자</div>
+        </div>
+        {% else %}
+        <div id="chatting_head_left">
+          <div class="chatting_head_name">신고자</div>
+        </div>
+        <div id="chatting_head_center">
+          Chatting
+        </div>
+        <div id="chatting_head_right">
+          <div class="chatting_head_name">{{ lawyer.name }} 변호사</div>
+        </div>
+        {% endif %}
+      </div>
+
+      <div id="chatting_body"></div>
+
+      <div id="chatting_input">
+        <input type="text" />
+        <button id="sendMessage" type="button" onclick="sendMessage()">전송</button>
+      </div>
+    </div>
+  </div>
+
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"
+  ></script>
+  <script src="{% static 'chatting/js/websocket.js' %}"></script>
+  <script>
+    // consumers 를 불러올 수 있도록 하는 경로
+    const path = 'ws://127.0.0.1:8000/ws/chat';
+    window.onload = function() {
+      WebSocketInstance.connect(path).then(() => {
+        WebSocketInstance.initChat("{{ room.id }}", {% if user.is_authenticated %} "lawyer" {% else %} "user" {% endif %});
+        WebSocketInstance.fetchMessages({% if user.is_authenticated %} "lawyer" {% else %} "user" {% endif %});
+      });
+    }
+
+    // enter 누를 시 메세지 전송
+    el = document.querySelector("#chatting_input input");
+    el.focus();
+    el.onkeyup = function(e){
+      if (e.keyCode === 13){
+        document.querySelector("#sendMessage").click();
+      }
+    };
+
+    function sendMessage() {
+      el = document.querySelector("#chatting_input input");
+      WebSocketInstance.newChatMessage(el.value, {% if user.is_authenticated %} "lawyer" {% else %} "user" {% endif %});
+      el.value = "";
+    }
+  </script>
+</body>

@@ -1,0 +1,169 @@
+/* Initial Settings */
+@import url("http://fonts.googleapis.com/earlyaccess/notosanskr.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', 'Nanum Gothic', sans-serif;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 800px;
+  height: inherit;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 50;
+}
+
+/* Header Style */
+
+#header {
+  height: 80px;
+  box-shadow: 0 0 20px rgba(52, 58, 64, 0.2);
+  background: white;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.header_right {
+  display: flex;
+  height: inherit;
+}
+
+.menu_item {
+  width: 100px;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.menu_text {
+  transition: 0.1s color;
+}
+
+.menu_item:hover .menu_text {
+  color: #4c6ef5;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background: white;
+  width: 150px;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 5px 10px rgba(52, 58, 64, 0.1);
+  z-index: 100;
+}
+
+.menu_item:hover .dropdown,
+.dropdown:hover {
+  display: block;
+}
+
+.dropdown_item {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.1s all;
+}
+
+.dropdown_item:hover {
+  background: #748ffc;
+  color: white;
+}
+
+/* Footer Style */
+
+#footer {
+  height: 280px;
+  background: #748ffc;
+  color: white;
+
+}
+
+#footer .container {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer_top {
+  width: 100%;
+  border-bottom: 2px solid white;
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer_detail {
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+.footer_right {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footer_menu {
+  width: 150px;
+}
+
+.footer_menu_item {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: right;
+}
+
+.footer_menu_item+.footer_menu_item {
+  margin-top: 10px;
+}
+
+.footer_menu .footer_menu_item:first-child {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.footer_menu_item a {
+  transition: 0.2s color;
+}
+
+.footer_menu_item a:hover {
+  color: #edf2ff;
+}
+
+.footer_bottom {
+  width: 100%;
+  text-align: right;
+  font-weight: 300;
+  font-size: 0.8rem;
+  padding: 20px 0;
+}

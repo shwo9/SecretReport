@@ -1,0 +1,310 @@
+{% extends 'core/layout.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'lawyerAccount/css/lawyer_form.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+<div id="content">
+  <div class="container">
+    <div class="page_title">
+      <h1>변호사 회원가입</h1>
+      <div class="border"></div>
+    </div>
+
+    <form id="lawyerForm" method="POST" enctype="multipart/form-data" style="width: 100%">
+      {% csrf_token %}
+      <!-- 기본사항 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          기본사항 입력
+        </div>
+        <div class="form_vertical">
+          <table>
+            <colgroup>
+              <col style="width: 30%" />
+              <col style="width: 70%" />
+            </colgroup>
+            <tr>
+              <td>아이디</td>
+              <td style="display: flex">
+                <input type="text" class="username_input" name="username" check_result="fail" required />
+                <button type="button" class="id_overlap_button" onclick="id_overlap_check()">중복검사</button>
+                <img id="id_check_sucess" style="display: none;"
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjAuMjg1IDJsLTExLjI4NSAxMS41NjctNS4yODYtNS4wMTEtMy43MTQgMy43MTYgOSA4LjcyOCAxNS0xNS4yODV6Ii8+PC9zdmc+">
+              </td>
+            </tr>
+            <tr>
+              <td>비밀번호</td>
+              <td><input type="password" name="password1" required /></td>
+            </tr>
+            <tr>
+              <td>비밀번호 확인</td>
+              <td><input type="password" name="password2" required /></td>
+            </tr>
+            <tr>
+              <td>성명(한글)</td>
+              <td><input type="text" name="name" required /></td>
+            </tr>
+            <tr>
+              <td>성별</td>
+              <td class="gender_radio">
+                <label><input type="radio" name="gender" value="man" required />남성</label>
+                <label><input type="radio" name="gender" value="woman" />여성</label>
+              </td>
+            </tr>
+            <tr>
+              <td>휴대전화</td>
+              <td><input type="text" name="phone_number" id="phone" required /></td>
+            </tr>
+            <tr>
+              <td>이메일</td>
+              <td><input type="email" name="email" required /></td>
+            </tr>
+            <!-- <tr>
+              <td>본인인증</td>
+              <td><input type="text" required /></td>
+            </tr> -->
+            <tr>
+              <td>사무실주소</td>
+              <td class="address">
+                <div>
+                  <input type="text" id="recipient_postcode" name="home_postcode" placeholder="우편번호" readonly required>
+                  <button type="button" class="address_button" onclick="recipient_address_button();">검색</button><br>
+                </div>
+                <input type="text" id="recipient_roadAddress" name="home_roadAddress" placeholder="도로명주소" readonly required>
+                <div id="recipient_guide" style="color:#999;display:none"></div>
+                <input type="text" id="recipient_detailAddress" name="home_detailAddress" placeholder="상세주소" required>
+              </td>
+            </tr>
+            <tr>
+              <td>사진</td>
+              <td><input type="file" name="image" accept="image/*" required /></td>
+            </tr>
+            <tr>
+              <td>아이디 분실 시 질문</td>
+              <td>
+                <select name="find_id_question" id="">
+                  <option value="father_name">아버지 성함은?</option>
+                  <option value="mother_name">어머니 성함은?</option>
+                  <option value="book">인상깊게 읽은 책 이름은?</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>아이디 분실 시 답변</td>
+              <td><input type="text" name="find_id_answer" required /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 학력사항 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          학력사항 입력
+        </div>
+        <div class="form_horizontal">
+          <table>
+            <colgroup>
+              <col style="width: 12%" />
+              <col style="width: 22%" />
+              <col style="width: 22%" />
+              <col style="width: 22%" />
+              <col style="width: 22%" />
+            </colgroup>
+            <tr>
+              <td></td>
+              <td>학교명</td>
+              <td>전공</td>
+              <td>입학</td>
+              <td>졸업</td>
+            </tr>
+            <tr>
+              <td>고등학교</td>
+              <td><input type="text" name="high_school" /></td>
+              <td><input type="text" name="high_school_major" /></td>
+              <td><input type="date" name="high_school_dmission_year" /></td>
+              <td><input type="date" name="high_school_graduation_year" /></td>
+            </tr>
+            <tr>
+              <td>대학교</td>
+              <td><input type="text" name="university" /></td>
+              <td><input type="text" name="university_major" /></td>
+              <td><input type="date" name="university_dmission_year" /></td>
+              <td><input type="date" name="university_graduation_year" /></td>
+            </tr>
+            <tr>
+              <td>대학원</td>
+              <td><input type="text" name="graduate_school" /></td>
+              <td><input type="text" name="graduate_school_major" /></td>
+              <td><input type="date" name="graduate_school_dmission_year" /></td>
+              <td><input type="date" name="graduate_school_graduation_year" /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 변호사 자격사항 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          변호사 자격사항 입력
+        </div>
+        <div class="form_vertical">
+          <table>
+            <colgroup>
+              <col style="width: 30%" />
+              <col style="width: 70%" />
+            </colgroup>
+            <tr>
+              <td>구분</td>
+              <td>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_1" name="qual_category" value="1" />
+                  <label for="input_1_1">사법연수원 수료자-공직 경력 없음</label>
+                  <div class="check_radio"></div>
+                </div>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_2" name="qual_category" value="2" />
+                  <label for="input_1_2">변호사 시험 합격자-공직 경력 없음</label>
+                  <div class="check_radio"></div>
+                </div>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_3" name="qual_category" value="3" />
+                  <label for="input_1_3">판, 검사</label>
+                  <div class="check_radio"></div>
+                </div>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_4" name="qual_category" value="4" />
+                  <label for="input_1_4">판,검사외 전,현직 모든 공직경력자 [재판 연구원, 경찰,
+                    단기군법무관(법무관 병역 복무), 공무원등]</label>
+                  <div class="check_radio"></div>
+                </div>
+                <div class="input_radio">
+                  <input type="radio" id="input_1_5" name="qual_category" value="5" />
+                  <label for="input_1_5">군법무관</label>
+                  <div class="check_radio"></div>
+                </div>
+              </td>
+            </tr>
+            <tbody id="capacity">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- 자기소개 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          자기소개 입력
+        </div>
+        <div class="form_vertical">
+          <table>
+            <tr>
+              <td style="padding-left: 0">
+                <textarea name="introduce" required></textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 전문분야 입력 폼 -->
+      <div class="form_container">
+        <div class="form_title">
+          전문분야 선택
+        </div>
+        <div class="form_vertical">
+          <table>
+            <tr>
+              <td style="padding-left: 0">
+                {% for speciality in specialities %}
+                  <div class="input_checkbox">
+                    <input type="checkbox" id="input_3_{{ speciality.id }}" name="fields" value="{{ speciality.id }}" />
+                    <label for="input_3_{{ speciality.id }}">{{ speciality }}</label>
+                    <div class="check_checkbox"></div>
+                  </div>
+                {% endfor %}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <input class="merged_input" type="hidden" name="merged_qual">
+
+      <div class="submit_button">
+        <div onclick="lawyerSubmit()">가입하기</div>
+        <button type="submit" id="real_submit" style="visibility:hidden;"></button>
+      </div>
+    </form>
+
+
+
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block script_bottom %}
+<!-- 유효성 검사 -->
+
+<script src="{% static 'lawyerAccount/js/cleave.min.js'%}"></script>
+<script src="{% static 'lawyerAccount/js/cleave-phone.kr.js'%}"></script>
+<script src="{% static 'lawyerAccount/js/valid.js'%}"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="{% static 'lawyerAccount/js/index.js'%}"></script>
+
+
+<!-- 아이디 중복 체크 (ajax) -->
+<script>
+  function id_overlap_check() {
+    $('.username_input').change(function () {
+      $('#id_check_sucess').hide();
+      $('.id_overlap_button').show();
+      $('.username_input').attr("check_result", "fail");
+    });
+
+    if ($('.username_input').val() === '') {
+      alert('이메일을 입력해주세요.');
+      return;
+    }
+
+    id_overlap_input = document.querySelector('input[name="username"]');
+
+    $.ajax({
+      url: "{% url 'lawyerAccount:id_overlap_check' %}",
+      data: {
+        'username': id_overlap_input.value
+      },
+      datatype: 'json',
+      success: function (data) {
+        console.log(data['overlap']);
+        if (data['overlap'] === "fail") {
+          alert("이미 존재하는 아이디 입니다.");
+          id_overlap_input.focus();
+          return;
+        } else {
+          alert("사용가능한 아이디 입니다.");
+          $('.username_input').attr("check_result", "success");
+          $('#id_check_sucess').show();
+          $('.id_overlap_button').hide();
+          $('.username_input').attr("readonly", true);
+          return;
+        }
+      }
+    });
+  }
+</script>
+<!-- 주소 값 넣기 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="{% static 'lawyerAccount/js/address.js'%}"></script>
+
+
+
+{% endblock %}
